@@ -3,12 +3,16 @@ import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
-import BookList from'./containers/book_list';
+import Navbar from'./components/navbar';
+import MainContainer from './components/main_container'
 
 class App extends Component {
     render() {
         return (
-            <BookList/>
+            <div>
+                <Navbar/>
+                <MainContainer/>
+            </div>
         );
     }
 }
@@ -16,6 +20,8 @@ class App extends Component {
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 // put it in dom
-ReactDom.render(<Provider store={createStoreWithMiddleware(reducers)}>
-    <App/>
-</Provider>, document.querySelector('.container'));
+ReactDom.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App/>
+    </Provider>
+    , document.querySelector('#container'));
